@@ -947,7 +947,7 @@ typedef
 
 
 /*---------------------------------------------*/
-static Bool myfeof ( FILE* f )
+static Bool myfeof_ ( FILE* f )
 {
    Int32 c = fgetc ( f );
    if (c == EOF) return True;
@@ -1230,7 +1230,7 @@ int BZ_API(BZ2_bzRead)
       if (ferror(bzf->handle)) 
          { BZ_SETERR(BZ_IO_ERROR); return 0; };
 
-      if (bzf->strm.avail_in == 0 && !myfeof(bzf->handle)) {
+      if (bzf->strm.avail_in == 0 && !myfeof_(bzf->handle)) {
          n = fread ( bzf->buf, sizeof(UChar), 
                      BZ_MAX_UNUSED, bzf->handle );
          if (ferror(bzf->handle))
@@ -1245,7 +1245,7 @@ int BZ_API(BZ2_bzRead)
       if (ret != BZ_OK && ret != BZ_STREAM_END)
          { BZ_SETERR(ret); return 0; };
 
-      if (ret == BZ_OK && myfeof(bzf->handle) && 
+      if (ret == BZ_OK && myfeof_(bzf->handle) && 
           bzf->strm.avail_in == 0 && bzf->strm.avail_out > 0)
          { BZ_SETERR(BZ_UNEXPECTED_EOF); return 0; };
 
