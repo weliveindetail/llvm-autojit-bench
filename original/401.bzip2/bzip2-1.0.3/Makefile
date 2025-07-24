@@ -22,7 +22,7 @@ OBJS= blocksort.o  \
       decompress.o \
       bzlib.o
 
-all: libbz2.a bzip2 bzip2recover test
+all: libbz2.a bzip2
 
 bzip2: libbz2.a bzip2.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -o bzip2 bzip2.o -L. -Wl,--whole-archive -lbz2 -Wl,--no-whole-archive
