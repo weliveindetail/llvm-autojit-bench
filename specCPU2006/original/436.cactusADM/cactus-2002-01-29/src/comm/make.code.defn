@@ -1,7 +1,0 @@
-SRCS=\
-CactusSync.c\
-CactusDefaultComm.c\
-OverloadComm.c\
-Interp.c\
-Reduction.c
-
